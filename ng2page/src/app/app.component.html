@@ -1,0 +1,15 @@
+<div style="text-align:center">  
+  <h1>IdentityIQ Scaffolding plugin</h1>  
+<div>  
+<form>  
+        <div class="form-group">  
+                <label>Requestee: </label>  
+                <input [(ngModel)]="identityName" placeholder="Identity Name" name="identityName" />  
+                <button (click)="getInfo()">Get Identity Info</button>  
+        </div>  
+        <br/>  
+</form>  
+   
+<div>{{identityInfo | json}}</div>
+
+

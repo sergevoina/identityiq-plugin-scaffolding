@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE Plugin PUBLIC "sailpoint.dtd" "sailpoint.dtd">  
+<Plugin certificationLevel="None" displayName="Scaffolding Plugin" minSystemVersion="7.1" maxSystemVersion="7.1" name="ScaffoldingPlugin" version="@VERSION@">  
+  <Attributes>  
+    <Map>  
+      <entry key="minUpgradableVersion" value="1.0" />  
+      <entry key="fullPage">  
+        <value>  
+          <FullPage title="Scaffolding Plugin" />  
+        </value>  
+      </entry>  
+      <entry key="restResources">  
+        <value>  
+          <List>  
+            <String>sailpoint.plugin.rest.ScaffoldingPluginResource</String>  
+          </List>  
+        </value>  
+      </entry>  
+      <entry key="snippets">  
+        <value>  
+          <List>  
+            <Snippet regexPattern=".*identity\.jsf.*">  
+              <Scripts>  
+                <String>ui/js/identity-page-snippet.js</String>  
+              </Scripts>  
+              <StyleSheets>  
+              </StyleSheets>  
+            </Snippet>  
+            <Snippet regexPattern=".*debug\.jsf.*">  
+              <Scripts>  
+                <String>ui/js/debug-page-snippet.js</String>  
+              </Scripts>  
+              <StyleSheets>  
+              </StyleSheets>  
+            </Snippet>  
+          </List>  
+        </value>  
+      </entry>  
+    </Map>  
+  </Attributes>  
+</Plugin>
+

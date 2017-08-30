@@ -1,0 +1,6 @@
+rootProject.name = 'scaffolding'  
+  
+include 'plugin'  
+include 'restapi'  
+include 'ng2page'
+

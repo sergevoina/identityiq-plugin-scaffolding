@@ -1,0 +1,11 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+task clean(type: Delete) {
+	delete 'build'
+}
+
+task build(type: Copy) {
+    from { 'src' }
+    into('build/plugin')
+    filter(ReplaceTokens, tokens: [VERSION: version, PluginName: pluginName])
+}

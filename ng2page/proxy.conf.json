@@ -1,0 +1,6 @@
+{
+  "/identityiq": {
+    "target": "http://spdev:8080",
+    "secure": false
+  }
+}

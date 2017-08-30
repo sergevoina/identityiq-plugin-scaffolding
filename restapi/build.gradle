@@ -1,0 +1,25 @@
+apply plugin: 'java-library'  
+  
+sourceCompatibility = 1.7  
+targetCompatibility = 1.7  
+  
+dependencies {  
+  // This dependency is used internally, and not exposed to consumers on their own compile classpath.  
+  implementation 'log4j:log4j:1.2.17'  
+  
+  //   
+  implementation 'identityiq:identityiq:7.1p1'  
+  implementation 'org.glassfish.jersey.bundles:jaxrs-ri:2.22.2'  
+  
+  // Use JUnit test framework  
+  testImplementation 'junit:junit:4.12'  
+}  
+  
+jar {  
+  baseName pluginName  
+  manifest {  
+    attributes("Implementation-Title": "Gradle",  
+               "Implementation-Version": version)  
+  }  
+}  
+

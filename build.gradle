@@ -1,0 +1,75 @@
+allprojects {
+    apply plugin: 'eclipse'
+}
+
+subprojects {  
+    // Declare where to find the dependencies of the project  
+    repositories {  
+        // Use maven for resolving dependencies.  
+        mavenCentral()  
+        // this is where identityiq.jar lives  
+        mavenLocal()  
+    }  
+}  
+  
+ext {  
+    zipName = "${pluginName}.${version}.zip"  
+    distDir = "dist"  
+}
+
+eclipse {
+    project {
+        //if you don't like the name Gradle has chosen
+        name = "${pluginName}"
+    }
+}
+
+project(":plugin") {
+    eclipse {
+        project {
+            name = "${pluginName}-Plugin"
+        }
+    }
+}
+
+project(":restapi") {
+    eclipse {
+        project {
+            name = "${pluginName}-RestAPI"
+        }
+    }
+}
+
+project(":ng2page") {
+    eclipse {
+        project {
+            name = "${pluginName}-Angular"
+        }
+    }
+}
+
+
+task clean {  
+    delete "${distDir}"  
+}  
+  
+task build(type: Zip, dependsOn: [':ng2page:build', ':restapi:build', ':plugin:build']) {
+    archiveName "$zipName"
+    destinationDir file("$distDir")
+
+    into('/') {
+        from { project(':plugin').file('build/plugin') }
+    }
+    into('/ui/ng') {
+        from { project(':ng2page').file('dist') }
+    }
+    into('/lib') {
+        from { project(':restapi').jar }
+    }
+}
+  
+task deploy(type: Exec, dependsOn: build) {  
+    //commandLine 'cmd', '/c', "${curlCmd} \"${distUrl}/rest/plugins\" --form \"file=@${distDir}/${zipName};fileName=${zipName}\""  
+    commandLine 'curl', "${distUrl}/rest/plugins", "--form", "file=@${distDir}/${zipName};fileName=${zipName}"
+}  
+
